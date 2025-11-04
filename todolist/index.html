@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoLo</title>
+    <style>
+        body {
+        font-family: Arial;
+        background: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      #todo {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 300px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="todo">
+    <h1>My To-Do list : </h1>
+    <ul class="list-group" id="list"></ul>
+    <input type="text" placeholder="Plesse enter the task: " />
+    <button id="add">+</button>
+</div>
+</body>
+<script>
+    const add = document.getElementById('add');
+    const list = document.getElementById('list');
+
+    add.addEventListener('click',addtask)
+
+    function addtask(){
+        const inpt = document.querySelector('input').value;
+        document.querySelector('input').value = '';
+        const txt = document.createElement('li');
+        txt.className = "list-group-item"
+        txt.innerHTML = `${inpt}<button id='remove' style = "margin: 10px">-</button>`;
+        list.appendChild(txt)
+    }
+    list.addEventListener('click',function(e){
+        if(e.target.id == "remove"){
+            const parnt = e.target.parentElement;
+            parnt.remove();     
+        }
+    })
+    </script>
+</html>
